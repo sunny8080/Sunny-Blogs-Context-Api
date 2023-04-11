@@ -12,19 +12,19 @@ const Pagination = () => {
                     {
                         curPageNo > 1 &&
                         (<button
-                            className='border-2 px-4 py-1 rounded-md'
+                            className='border-2 border-gray-300  px-4 py-1 rounded-md hover:border-gray-500 transition-all duration-500'
                             onClick={() => handlePageChange(curPageNo - 1)}>Previous</button>)
                     }
 
                     {
                         curPageNo < totalPages &&
                         (<button
-                            className='border-2 px-4 py-1 rounded-md'
+                            className='border-2 px-4 border-gray-300 py-1 rounded-md hover:border-gray-500 transition-all duration-500'
                             onClick={() => handlePageChange(curPageNo + 1)}>Next</button>)
                     }
                 </div>
 
-                <p className='font-bold'>
+                <p className=' font-semibold'>
                     Page {curPageNo} of {totalPages}
                 </p>
             </div>

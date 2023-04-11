@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../baseUrl";
 
 // step 1 : creation
@@ -9,14 +10,20 @@ function AppContextProvider({ children }) {
     const [curPageNo, setCurPageNo] = useState(1);
     const [totalPages, setTotalPages] = useState(null);
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
-    async function fetchBlogPosts(pageNo) {
+    async function fetchBlogPosts(pageNo, tag = null, category = null) {
         setLoading(true);
         let url = `${baseUrl}?page=${pageNo}`;
+        if (tag) url += `&tag=${tag}`;
+        if (category) url += `&category=${category}`
 
         try {
             const response = await fetch(url);
             const data = await response.json();
+            if (!data.posts || data.posts.length === 0)
+                throw new Error("Something went wrong")
+
             // console.log(data);
             setCurPageNo(data.page);
             setTotalPages(data.totalPages);
@@ -31,14 +38,17 @@ function AppContextProvider({ children }) {
         setLoading(false);
     }
 
+
+
     function handlePageChange(pageNo) {
-        fetchBlogPosts(pageNo);
+        navigate({ search: `page=${pageNo}` })
+        setCurPageNo(pageNo) // check if it is needed
     }
 
     const value = {
         loading,
+        setLoading,
         curPageNo,
-        setCurPageNo,
         totalPages,
         posts,
         setPosts,

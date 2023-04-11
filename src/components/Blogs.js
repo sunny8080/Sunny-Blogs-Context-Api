@@ -1,35 +1,25 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import Spinner from "./Spinner";
 import PostCard from "./PostCard";
 
 const Blogs = () => {
-    const { loading, posts } = useContext(AppContext);
+    const { posts } = useContext(AppContext);
 
     return (
-        <div>
+        <div className="flex flex-col items-center justify-center gap-y-10 py-8 ">
             {
-                loading ?
+                posts.length === 0 ?
                     (
-                        <div className="flex items-center justify-center h-[105vh]">
-                            <Spinner />
+                        <div>
+                            <h2 className=" mt-10 text-lg font-semibold">No Post Found</h2>
                         </div>
                     )
                     :
                     (
-                        <div className="my-[70px] mx-auto min-h-screen flex flex-col items-center justify-center gap-y-10 py-8 w-11/12 max-w-[670px]">
-                            {
-                                posts.length === 0 ? (<div><p>No Post Found</p></div>) :
-                                    (
-                                        posts.map((post) => <PostCard key={post.id} post={post} />)
-                                    )
-                            }
-                        </div>
+                        posts.map((post) => <PostCard key={post.id} post={post} />)
                     )
             }
-
         </div>
-
 
     )
 };
