@@ -27,19 +27,16 @@ const TagPage = () => {
             (
               <div className='my-[100px] w-11/12 max-w-2xl mx-auto'>
 
-                <div className='flex flex-col md:flex-row gap-y-4 gap-x-2 md:items-center'>
-                  <div className='flex  items-center gap-x-5'>
-                    <button
-                      className='border-2 px-4 border-gray-300  py-1 rounded-md hover:border-gray-500 transition-all duration-500'
-                      onClick={() => navigate(-1)}>
-                      Back
-                    </button>
+                <div className='flex flex-wrap gap-y-4 gap-x-2 items-center'>
+                  <button
+                    className='border-2 px-4 border-gray-300  py-1 rounded-md hover:border-gray-500 transition-all duration-500'
+                    onClick={() => navigate(-1)}>
+                    Back
+                  </button>
 
-                    <h3 className='text-xl font-bold'>Blogs Tagged</h3>
-                  </div>
+                  <h3 className='text-xl font-bold'>Blogs Tagged</h3>
                   <h2 className='text-xl font-bold text-blue-700 underline'>#{tag}</h2>
                 </div>
-
 
 
                 <Blogs />
