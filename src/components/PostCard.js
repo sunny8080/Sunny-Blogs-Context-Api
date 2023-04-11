@@ -16,7 +16,7 @@ const PostCard = ({ post }) => {
             <div className='flex flex-wrap gap-x-3 mt-2'>
                 {
                     post.tags.map((tag, ind) =>
-                        <a key={ind} className=' text-blue-700 underline font-bold text-xs' href="">#{tag}</a>
+                        <span key={ind} className=' text-blue-700 underline font-bold text-xs' >#{tag}</span>
                     )
                 }
             </div>

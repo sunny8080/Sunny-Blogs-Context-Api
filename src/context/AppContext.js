@@ -46,6 +46,7 @@ function AppContextProvider({ children }) {
         handlePageChange,
     };
 
+
     // step 2 : send data
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
